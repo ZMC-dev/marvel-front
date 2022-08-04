@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Characters = () => {
 
@@ -7,10 +8,10 @@ const Characters = () => {
     const [isLoading, setIsLoading] = useState(true);
   
     useEffect(() => {
-      const fetchData = async () => {
+      const fetchCharacters = async () => {
         try {
-          const response = await axios.get("http://localhost:4000/characters");
-          console.log(response.data);
+          const response = await axios.get("http://localhost:4000/characters?limit=100");
+          //console.log(response.data);
           setData(response.data);
           setIsLoading(false);
 
@@ -18,7 +19,7 @@ const Characters = () => {
           console.log(error.response); 
         }
       };
-      fetchData();
+      fetchCharacters();
     }, []);
   
     return isLoading === true ? (
@@ -31,25 +32,20 @@ const Characters = () => {
           const thumbnail = `${character.thumbnail.path}.jpg`;
 
           return (
-            <div >
+            <div key={character._id}>
              <div className="info-card">
               <h3>{character.name}</h3>
               <p>Comic ID : {character._id}</p>
-  
-              <img className="thumbnail" 
-              style={{ height: "200px" }}
-              src={thumbnail} alt=""></img>     
 
-              {character.comics.map((id, index)=>{
-                return (
-                  <ul key={index}>
-                    <li>{id}</li>
-                  </ul>
-                )
-                
-              })}
-                
 
+              <Link to={`/character/${character._id}`}>
+                <img
+                className="thumbnail" 
+                style={{ height: "200px" }}
+                src={thumbnail}
+                alt="character-thumbnail"
+                />
+              </Link>     
 
              </div>
             </div>
