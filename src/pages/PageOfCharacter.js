@@ -8,6 +8,8 @@ const PageOfCharacter = () => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
+  
+
   useEffect(() => {
     const fetchCharactersId = async () => {
       try {
@@ -22,59 +24,32 @@ const PageOfCharacter = () => {
     };
     fetchCharactersId();
   }, [characterId]);
+  
 
   return isLoading === true ? (
     <div>En cours de chargement</div>
   ) : (
-    <div>
+    <section>
 
-      <h3>Hello</h3>
-      <p>{data}</p>
-  
-      {/* 
-      
-      
-      <section>
+    <h1>{data.name}</h1>
+    <p>{data.description}</p>
+    <img 
+    style={{ height: "300px" }}
+    src={`${data.thumbnail.path}.jpg`}
+    alt="img-character-page">
+    </img>
+
+        {data.comics.map((comic)=>{
+          return (
+          <div>
+            <ul>
+              <li>{comic}</li>
+            </ul>
+          </div>  
+          );        
+        })}
         
-        {data.results.map((character) => {
-
-        //const thumbnail = `${character.thumbnail.path}.jpg`;
-
-        return (
-        <div >
-          <h1>Page Of Character</h1>
-
-            {character.comics.map((id, index)=>{
-                return (
-                  <ul key={index}>
-                    <li>{id}</li>
-                  </ul>
-                )
-          })}
-
-
-          // ==> lien à reproduire
-          <Link to={`/comics/${character._id}`}>
-            <div>
-              <h2>{character.name}</h2>
-              <img
-                style={{ height: "150px" }}
-                src={img}
-                alt=""
-              />
-            </div>
-          </Link> //
-
-
-        </div>
-        );
-      })}
       </section>
-      
-    */}
-
-      
-    </div>
   );
 };
 
