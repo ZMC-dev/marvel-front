@@ -7,6 +7,9 @@
   margin-right: 20px;
 }
 
+h1 {
+ font-size: 28px;
+}
 .header-menu {
   min-height: 20vh;
   display: flex;
@@ -15,7 +18,8 @@
   color: #282c34;
   align-items: center;
   justify-items: center;
-  margin: 20px;
+  margin: 30px;
+  padding: 20px;
 }
 
 .header-menu-right {
@@ -25,8 +29,7 @@
 
 .header-menu-right > article {
   background-color: #282c34;
-  
-  width: 120px;
+  width: 150px;
  height: 25px;
  border-radius: 20px;
  padding: 5px;
@@ -49,22 +52,61 @@
   margin: 20px;
 }
 
+
 .info-section {
   display: flex;
   flex-wrap: wrap;
   width: 1200px;
   margin: 40px;
+  justify-content: center;
+  align-content: center ;
+  
 }
 
 .info-card {
-  width: 250px;
-  height: auto;
-  padding: 20px;
+  width: 300px;
+  height: 400px;
+  padding: 15px;
   text-align: center;
+  background-color: red;
+  border-radius: 20px;
+  margin: 10px; 
+  font-weight: 500;
+  color: white;
 }
 
 .thumbnail {
   object-fit: cover;
   box-sizing: border-box;
   margin-left: 25px;
+}
+.character-section {
+  display: flex;
+  background-color: red;
+  justify-content: space-between;
+  padding: 30px;
+  max-width: 600px;
+  margin-left: 300px;
+  border-radius: 10px;
+}
+
+.character-section > img {
+ padding: 20px;
+}
+
+.info-right-section {
+  padding: 20px;
+  text-align: center;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.info-description-text {
+  display: block;/* or inline-block */
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 3.6em;
+  line-height: 1.8em;
 }

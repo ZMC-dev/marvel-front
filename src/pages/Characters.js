@@ -6,11 +6,12 @@ const Characters = () => {
 
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
+ 
   
     useEffect(() => {
       const fetchCharacters = async () => {
         try {
-          const response = await axios.get("http://localhost:4000/characters?limit=100");
+          const response = await axios.get("http://localhost:4000/characters");
           //console.log(response.data);
           setData(response.data);
           setIsLoading(false);
