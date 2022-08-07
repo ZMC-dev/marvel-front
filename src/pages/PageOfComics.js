@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom"
+import Header from "../components/Header";
 
 
 const PageOfComics = () => {
@@ -27,28 +28,44 @@ const PageOfComics = () => {
   return isLoading === true ? (
     <div>En cours de chargement</div>
   ) : (
-        <section className="character-section">
-          <div>
-            <h2>hello</h2>
-            <p>{data.name}</p>
-            <p>{data.description}</p>
+
+     <div>
+          <Header/>
+
+      <div className="container">  
+              
+          <section className="character-comics-section">
+      
+            <div>
+            <Link to={`/character/${data._id}`}>
+              <button className="btn-to-character-page">{data.name}</button>
+              </Link>
+             
+              <p>{data.description}</p>
+            </div>
+            
+          <div className="character-comics-list" >
 
             {data.comics.map((comic,index)=>{
               return(
                 <div key={index}>
                   <img
                 className="thumbnail" 
-                style={{ height: "200px" }}
+                style={{ width: "100px" }}
                 src={`${comic.thumbnail.path}.jpg`}
                 alt="character-thumbnail"
                 />
                 </div>
-                
               );
             })}
 
             </div>
       </section>
+
+     </div>
+
+  </div>
+             
   
   );
 };

@@ -1,4 +1,9 @@
+
+
+
 const Favorites = () => {
+
+
 
   return (
   <section>
