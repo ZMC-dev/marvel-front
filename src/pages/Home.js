@@ -2,7 +2,7 @@ import { Link} from "react-router-dom";
 import logo from "../assets/img/logo.png";
 import hero from "../assets/img/hero.jpg";
 
-import Cookies from "js-cookie";
+//import Cookies from "js-cookie";
 
 const Home = () => {
 

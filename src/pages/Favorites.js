@@ -1,9 +1,11 @@
-
+import Cookies from "js-cookie";
 
 
 const Favorites = () => {
 
-
+  Cookies.get('newFavList');
+  const parseFavList = JSON.parse('newFavList');
+  console.log(parseFavList);
 
   return (
   <section>

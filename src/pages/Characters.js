@@ -15,7 +15,7 @@ const Characters = () => {
     const [favorites, setFavorites] = useState([]);
 
    
-    const [results, setResults] = useState();
+    //const [results, setResults] = useState();
 
 
   
@@ -35,22 +35,6 @@ const Characters = () => {
 
     }, []);
 
-    const searchResult = (event) => {
-      let newResults = [];
-      for (let i = 0; i < data.length; i++) {
-        if (
-          data[i].keywords.indexOf(event.target.value.toLowerCase()) !== -1
-        ) {
-          if (newResults.length >= 20) {
-            break;
-          } else {
-            newResults.push(data[i]);
-          }
-        }
-      }
-      setResults(newResults);
-    };
-  
     return isLoading === true ? (
       <div>En cours de chargement</div>
     ) : (
@@ -66,7 +50,6 @@ const Characters = () => {
              <div className="info-card">
               <h3>{character.name}</h3>
             
-            
 
               <Link to={`/comics/${character._id}`}>
                 <img
@@ -78,13 +61,17 @@ const Characters = () => {
               </Link>  
 
               <br/>
-
+              {/* ajouter aux favs ne marche pas, je réussi à créer un tableau mais j'arrive pas à copier les infos vers la page favoris */}
               <button className="fav-btn" onClick={(()=> {
                 const newFavorites = [...favorites];
                 newFavorites.push(character);
                 setFavorites(newFavorites)
-                console.log(newFavorites);
-                Cookies.set('newFavList', newFavorites)
+                const stringFavList = JSON.stringify(newFavorites)
+                //console.log(newFavorites);
+
+                console.log(character)
+                Cookies.set('newFavList', stringFavList)
+                
 
               })}> <img src={heart}
               style={{ width: "18px", color: "#fffff" }}
