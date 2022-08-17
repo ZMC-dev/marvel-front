@@ -64,19 +64,16 @@ const Characters = () => {
               {/* ajouter aux favs ne marche pas, je réussi à créer un tableau mais j'arrive pas à copier les infos vers la page favoris */}
               <button className="fav-btn" onClick={(()=> {
                 const newFavorites = [...favorites];
-                newFavorites.push(character);
+                // objet infos character pour ne pas push tout le character
+                const newObjCharacter = {name : character.name, picture : character.thumbnail.path}
+                newFavorites.push(newObjCharacter);
+
                 setFavorites(newFavorites)
                 const stringifyFavList = JSON.stringify(newFavorites)
-                
-                console.log("Character =>" + character)
-                console.log("newFavorites => " + newFavorites);
-                console.log("stringifyFavList" + stringifyFavList);
-
-                
+  
+                //le nom du cookies est 'newFavList'
                 Cookies.set('newFavList', stringifyFavList)
          
-                //VOILÀ 
-                //setFavorites(JSON.parse(Cookies.get("newFavList")))
 
               })}> <img src={heart}
               style={{ width: "18px", color: "#fffff" }}
