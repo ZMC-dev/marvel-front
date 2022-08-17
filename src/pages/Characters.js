@@ -12,7 +12,7 @@ const Characters = () => {
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
-    const [favorites, setFavorites] = useState([]);
+    const [favorites, setFavorites] = useState(JSON.parse(Cookies.get("newFavList")));
 
    
     //const [results, setResults] = useState();
@@ -66,19 +66,24 @@ const Characters = () => {
                 const newFavorites = [...favorites];
                 newFavorites.push(character);
                 setFavorites(newFavorites)
-                const stringFavList = JSON.stringify(newFavorites)
-                //console.log(newFavorites);
-
-                console.log(character)
-                Cookies.set('newFavList', stringFavList)
+                const stringifyFavList = JSON.stringify(newFavorites)
                 
+                console.log("Character =>" + character)
+                console.log("newFavorites => " + newFavorites);
+                console.log("stringifyFavList" + stringifyFavList);
+
+                
+                Cookies.set('newFavList', stringifyFavList)
+         
+                //VOILÀ 
+                //setFavorites(JSON.parse(Cookies.get("newFavList")))
 
               })}> <img src={heart}
               style={{ width: "18px", color: "#fffff" }}
               alt=""></img></button>   
 
              </div>
-            </div>
+            </div>  
           );
         })}
         </section>
