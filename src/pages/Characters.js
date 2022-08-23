@@ -10,7 +10,9 @@ const Characters = ({search, setSearch}) => {
 
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
-    const [favorites, setFavorites] = useState(JSON.parse(Cookies.get("newFavList")));
+    const [favorites, setFavorites] = useState([]);
+    
+    //const [favorites, setFavorites] = useState(JSON.parse(Cookies.get("newFavList")));
 
     useEffect(() => {
       const fetchCharacters = async () => {
@@ -68,8 +70,11 @@ const Characters = ({search, setSearch}) => {
                 setFavorites(newFavorites)
                 const stringifyFavList = JSON.stringify(newFavorites)
   
-                //le nom du cookies est 'newFavList'
+                console.log(stringifyFavList);
+                
+                //le nom du cookie est 'newFavList'
                 Cookies.set('newFavList', stringifyFavList)
+              
 
               })}>
 

@@ -4,9 +4,9 @@ import heart from "../assets/img/heart.svg";
 
 const Favorites = () => {
 
-  Cookies.get("newFavList");
-  const parsingFavList = JSON.parse(Cookies.get("newFavList"))
-  //console.log(parsingFavList);
+  Cookies.get('newFavList');
+  const parsingFavList = JSON.parse(Cookies.get('newFavList'))
+  console.log(parsingFavList);
 
   return (
     <div className="container">

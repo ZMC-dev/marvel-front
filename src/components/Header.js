@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/img/logo.png";
 
 const Header = ({setSearch}) => {
-  const onChange = event => {setSearch(event.target.value)}
+  const onChange = event => {setSearch(event.target.value)};
   
   return (
       <header className="header">
@@ -13,7 +13,7 @@ const Header = ({setSearch}) => {
         </section>   
         <section >
           <div className="header-right">
-            <div className="search-bar">
+            <div>
               <input  
               type="text" 
               className="search-bar" 
