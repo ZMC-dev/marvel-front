@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import heart from "../assets/img/heart.svg";
 
 
-const Favorites = ({setFavorites}) => {
+const Favorites = () => {
 
   Cookies.get("newFavList");
   const parsingFavList = JSON.parse(Cookies.get("newFavList"))
@@ -13,6 +13,7 @@ const Favorites = ({setFavorites}) => {
     <section className="info-section">
 
       {parsingFavList.map((obj, index) => {
+      console.log(obj.picture);
       return (
         <div key={index}>
          <div className="info-card">
@@ -20,15 +21,13 @@ const Favorites = ({setFavorites}) => {
            <img
             className="thumbnail" 
             style={{ height: "200px" }}
-            src={`${obj.picture}.jpg`}
+            src={obj.picture}
             alt=""
             />
+
             <button className="fav-btn" onClick={(()=> {
 
-              parsingFavList.splice(index);
-              setFavorites(parsingFavList);
-              Cookies.set('newFavList', parsingFavList)
-
+              //RAJOUTER ICI CODE POUR SUPPRIMER ELEMENT DES COOKIES
 
               })}> <img src={heart}
               style={{ width: "18px", color: "red" }}

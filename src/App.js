@@ -1,5 +1,6 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
 
 import './App.css';
@@ -10,18 +11,23 @@ import PageOfCharacter from "./pages/PageOfCharacter";
 import PageOfComics from "./pages/PageOfComics";
 import Home from "./pages/Home";
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {faHeart} from '@fortawesome/free-solid-svg-icons';
+library.add(faHeart);
+
+
 
 function App() {
   
-
+const [search, setSearch] = useState("");
 
   return (
     <div className="container">
     <Router>
         <Routes>
           <Route path="/" element={<Home/>}></Route>
-          <Route path="/characters" element={<Characters/>} />
-          <Route path="/comics" element={<Comics />} />
+          <Route path="/characters" element={<Characters search={search} setSearch={setSearch}/>} />
+          <Route path="/comics" element={<Comics search={search} setSearch={setSearch} />} />
           <Route path="/favorites" element={<Favorites/>} />
           <Route path="/comics/:characterId" element={<PageOfComics/>} />
           <Route path="/character/:characterId" element={<PageOfCharacter/>} />

@@ -5,21 +5,16 @@ import heart from "../assets/img/heart.svg";
 import Cookies from "js-cookie";
 
 
-const Comics = () => {
+const Comics = ({search, setSearch}) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-
   const [favorites, setFavorites] = useState([]);
-
-  
-
 
   useEffect(() => {
     const fetchComics = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/comics`);
-        console.log(response.data);
-
+        const response = await axios.get(`http://localhost:4000/comics?title=${search}`);
+       //console.log(response.data);
         setData(response.data);
         setIsLoading(false);
 
@@ -28,13 +23,14 @@ const Comics = () => {
       }
     };
     fetchComics();
-  }, []);
+  }, [search, setSearch]);
 
   return isLoading === true ? (
     <div>En cours de chargement</div>
   ) : (
     <div>
-      <Header/>
+      <Header setSearch={setSearch}/>
+      
       <div className="container">
       <section className="info-section">
         {data.results.map((comic, index) => {

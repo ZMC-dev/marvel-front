@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/img/logo.png";
-import SearchBar from "./SearchBar";
 
-const Header = ({searchResult, newResults}) => {
+const Header = ({setSearch}) => {
+  const onChange = event => {setSearch(event.target.value)}
+  
   return (
       <header className="header">
         <section className="header-left">
@@ -10,12 +11,19 @@ const Header = ({searchResult, newResults}) => {
             <img src={logo} className="header-logo" alt="logo" />
           </Link>
         </section>   
-        <section className="header-right">
-          <div>
-            <SearchBar searchResult={searchResult} />
-            <p>{newResults}</p>
+        <section >
+          <div className="header-right">
+            <div className="search-bar">
+              <input  
+              type="text" 
+              className="search-bar" 
+              placeholder="search.......something"
+              onChange={onChange}/>
+            </div>
+            <button> <Link to="/characters">Personnages</Link> </button>
+            <button> <Link to="/comics">Comics</Link></button>
+            <button> <Link to="/favorites">Favoris</Link> </button>
           </div>
-          
         </section>  
 
     </header>

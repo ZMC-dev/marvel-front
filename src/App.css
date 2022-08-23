@@ -8,15 +8,24 @@ button {
   border: red solid 2px;
   color: black;
   border-radius: 10px;
-  width: auto;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 20px;
-  padding: 10px;
+  height: 50px;
+  margin: 20px;
+  min-width: 110px;
+}
+
+button a {
+  text-decoration: none;
+  color: black;
+ 
 }
 
 button:hover {
-  background-color: crimson;
-  border: white solid 2px;
+  background-color: lightgrey;
+  box-shadow: 5vh;
+  color: white;
+  border: red solid 3px;
 }
 
 
@@ -34,6 +43,12 @@ button:hover {
 .header {
   display: flex;
   margin: 20px;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .container-home {
@@ -181,14 +196,21 @@ h1 {
   background-color: red;
 }
 
-
-
 .fav-btn {
-  border-radius: 25px;
-  padding: 5px;
-  height: 30px;
-  color: red
+  border-radius: 10px;
+  height: 35px;
+  width: 35px;
+  padding: 6px;
 }
+
+.fav-btn:hover {
+  border: white solid 3px;
+}
+
+.fav-btn > .icon {
+ color: purple;
+}
+
 
 .info-card-img-desc {
   display: flex;

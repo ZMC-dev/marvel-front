@@ -2,27 +2,20 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
-import heart from "../assets/img/heart.svg";
 import Cookies from "js-cookie";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
-const Characters = () => {
+const Characters = ({search, setSearch}) => {
 
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
-
     const [favorites, setFavorites] = useState(JSON.parse(Cookies.get("newFavList")));
 
-   
-    //const [results, setResults] = useState();
-
-
-  
     useEffect(() => {
       const fetchCharacters = async () => {
         try {
-          const response = await axios.get("http://localhost:4000/characters");
+          const response = await axios.get(`http://localhost:4000/characters?name=${search}`);
           //console.log(response.data);
           setData(response.data);
           setIsLoading(false);
@@ -32,18 +25,20 @@ const Characters = () => {
         }
       };
       fetchCharacters();
-
-    }, []);
+    }, [search, setSearch]);
 
     return isLoading === true ? (
       <div>En cours de chargement</div>
     ) : (
       <div>
-        <Header/>
+        
+        <Header setSearch={setSearch}/>
+      
        <div className="container">
         <section className="info-section">
           {data.results.map((character) => {
-          const thumbnail = `${character.thumbnail.path}.jpg`;
+
+          const thumbnail = `${character.thumbnail.path}.jpg`
 
           return (
             <div key={character._id}>
@@ -61,11 +56,13 @@ const Characters = () => {
               </Link>  
 
               <br/>
-              {/* ajouter aux favs ne marche pas, je réussi à créer un tableau mais j'arrive pas à copier les infos vers la page favoris */}
-              <button className="fav-btn" onClick={(()=> {
+              <button className="fav-btn" onClick={(()=>  {
+
                 const newFavorites = [...favorites];
                 // objet infos character pour ne pas push tout le character
-                const newObjCharacter = {name : character.name, picture : character.thumbnail.path}
+                const newObjCharacter = {name: character.name, picture: thumbnail}
+                
+                console.log(newObjCharacter);
                 newFavorites.push(newObjCharacter);
 
                 setFavorites(newFavorites)
@@ -73,12 +70,13 @@ const Characters = () => {
   
                 //le nom du cookies est 'newFavList'
                 Cookies.set('newFavList', stringifyFavList)
-         
 
-              })}> <img src={heart}
-              style={{ width: "18px", color: "#fffff" }}
-              alt=""></img></button>   
+              })}>
 
+              <FontAwesomeIcon className="iconHeart" icon="heart" />
+    
+              </button>   
+        
              </div>
             </div>  
           );
@@ -87,9 +85,6 @@ const Characters = () => {
         </div>
       </div>
     );
-  
-  
-
 
   };
   
