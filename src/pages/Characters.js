@@ -6,19 +6,24 @@ import Cookies from "js-cookie";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Characters = ({search, setSearch}) => {
+const Characters = ({search, setSearch, skip, setSkip}) => {
 
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const [favorites, setFavorites] = useState([]);
+    const limit = 36;
     
     //const [favorites, setFavorites] = useState(JSON.parse(Cookies.get("newFavList")));
+
+
 
     useEffect(() => {
       const fetchCharacters = async () => {
         try {
-          const response = await axios.get(`http://localhost:4000/characters?name=${search}`);
+          const response = await axios.get(`http://localhost:4000/characters?name=${search}&skip=${skip}&limit=${limit}`);
           //console.log(response.data);
+
+          console.log(search);
           setData(response.data);
           setIsLoading(false);
 
@@ -27,7 +32,7 @@ const Characters = ({search, setSearch}) => {
         }
       };
       fetchCharacters();
-    }, [search, setSearch]);
+    }, [search, setSearch, skip, setSkip]);
 
     return isLoading === true ? (
       <div>En cours de chargement</div>
@@ -71,7 +76,7 @@ const Characters = ({search, setSearch}) => {
                 const stringifyFavList = JSON.stringify(newFavorites)
   
                 console.log(stringifyFavList);
-                
+
                 //le nom du cookie est 'newFavList'
                 Cookies.set('newFavList', stringifyFavList)
               
@@ -88,6 +93,15 @@ const Characters = ({search, setSearch}) => {
         })}
         </section>
         </div>
+            <div className="skip-btn">
+                <button> page précedente </button>
+
+                <button 
+                  onClick={(()=>{
+                  setSkip(skip + 36)
+                })}
+                disabled={skip <= 36 ? true : false}> page suivante  </button>
+          </div>
       </div>
     );
 

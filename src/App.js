@@ -20,13 +20,14 @@ library.add(faHeart);
 function App() {
   
 const [search, setSearch] = useState("");
+const [skip, setSkip] = useState(0);
 
   return (
     <div className="container">
     <Router>
         <Routes>
           <Route path="/" element={<Home/>}></Route>
-          <Route path="/characters" element={<Characters search={search} setSearch={setSearch}/>} />
+          <Route path="/characters" element={<Characters search={search} setSearch={setSearch} skip={skip} setSkip={setSkip}/>} />
           <Route path="/comics" element={<Comics search={search} setSearch={setSearch} />} />
           <Route path="/favorites" element={<Favorites/>} />
           <Route path="/comics/:characterId" element={<PageOfComics/>} />
@@ -37,5 +38,4 @@ const [search, setSearch] = useState("");
   );
 
 }
-
 export default App;

@@ -214,3 +214,14 @@ h1 {
 .info-card-img-desc {
   display: flex;
 }
+
+
+.skip-btn {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid lightgray;
+}
+
+.skip-btn > button {
+  font-size: 14px;
+}
