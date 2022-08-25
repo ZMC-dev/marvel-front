@@ -94,13 +94,18 @@ const Characters = ({search, setSearch, skip, setSkip}) => {
         </section>
         </div>
             <div className="skip-btn">
-                <button> page précedente </button>
+                <button
+                onClick={(()=>{
+                  setSkip(skip - 36)
+                })}
+                disabled={skip < 36 ? true : false}
+                > page précedente </button>
 
                 <button 
                   onClick={(()=>{
                   setSkip(skip + 36)
                 })}
-                disabled={skip <= 36 ? true : false}> page suivante  </button>
+               > page suivante  </button>
           </div>
       </div>
     );
