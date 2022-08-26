@@ -10,10 +10,11 @@ const Characters = ({search, setSearch, skip, setSkip}) => {
 
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
-    const [favorites, setFavorites] = useState([]);
+
+    const [favorites, setFavorites] = useState(JSON.parse(Cookies.get("newFavList")));
+    //const [favorites, setFavorites] = useState([]);
     const limit = 36;
-    
-    //const [favorites, setFavorites] = useState(JSON.parse(Cookies.get("newFavList")));
+
 
 
 
@@ -65,11 +66,21 @@ const Characters = ({search, setSearch, skip, setSkip}) => {
               <br/>
               <button className="fav-btn" onClick={(()=>  {
 
-                const newFavorites = [...favorites];
-                const newObjCharacter = {name: character.name, picture: thumbnail}
+                const newFavorites = [...favorites]
+
+                const newObjCharacter = {name: character.name, picture: thumbnail, id: character._id};
                 
                 console.log(newObjCharacter);
-                newFavorites.push(newObjCharacter);
+
+                if (!newObjCharacter.id) 
+                {
+                  newFavorites.push(newObjCharacter)
+                  
+                } else
+                {
+                  newFavorites.filter(character._id).pop()
+                }
+                
 
                 setFavorites(newFavorites)
                 const stringifyFavList = JSON.stringify(newFavorites)
