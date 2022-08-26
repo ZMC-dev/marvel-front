@@ -12,8 +12,8 @@ import PageOfComics from "./pages/PageOfComics";
 import Home from "./pages/Home";
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import {faHeart} from '@fortawesome/free-solid-svg-icons';
-library.add(faHeart);
+import {faHeart, faForward, faBackward} from '@fortawesome/free-solid-svg-icons';
+library.add(faHeart , faForward, faBackward);
 
 
 

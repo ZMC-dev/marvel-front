@@ -45,7 +45,7 @@ const Characters = ({search, setSearch, skip, setSkip}) => {
         <section className="info-section">
           {data.results.map((character) => {
 
-          const thumbnail = `${character.thumbnail.path}.jpg`
+          const thumbnail = `${character.thumbnail.path}.${character.thumbnail.extension}`
 
           return (
             <div key={character._id}>
@@ -66,7 +66,6 @@ const Characters = ({search, setSearch, skip, setSkip}) => {
               <button className="fav-btn" onClick={(()=>  {
 
                 const newFavorites = [...favorites];
-                // objet infos character pour ne pas push tout le character
                 const newObjCharacter = {name: character.name, picture: thumbnail}
                 
                 console.log(newObjCharacter);
@@ -80,10 +79,9 @@ const Characters = ({search, setSearch, skip, setSkip}) => {
                 //le nom du cookie est 'newFavList'
                 Cookies.set('newFavList', stringifyFavList)
               
-
               })}>
 
-              <FontAwesomeIcon className="iconHeart" icon="heart" />
+              <FontAwesomeIcon icon="heart" />
     
               </button>   
         
@@ -93,19 +91,25 @@ const Characters = ({search, setSearch, skip, setSkip}) => {
         })}
         </section>
         </div>
+        {/* bouttons pagination*/}
             <div className="skip-btn">
                 <button
                 onClick={(()=>{
                   setSkip(skip - 36)
                 })}
                 disabled={skip < 36 ? true : false}
-                > page précedente </button>
+                > Page Précedente 
+                <FontAwesomeIcon icon="backward" />
+                </button>
 
                 <button 
                   onClick={(()=>{
                   setSkip(skip + 36)
                 })}
-               > page suivante  </button>
+               > 
+                <FontAwesomeIcon icon="forward" />
+                 Page Suivante
+                 </button>
           </div>
       </div>
     );
